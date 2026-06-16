@@ -1,8 +1,10 @@
 FROM tomcat:10
 
+# Clean default apps
 RUN rm -rf /usr/local/tomcat/webapps/*
 
-COPY LoginWebApp.war /usr/local/tomcat/webapps/ROOT.war
+# Copy WAR from Maven target
+COPY target/LoginWebApp.war /usr/local/tomcat/webapps/ROOT.war
 
 EXPOSE 8080
 
