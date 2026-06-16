@@ -1,8 +1,14 @@
-version: '3'
-services:
-  tomcat-service:
-    image: 'tomcat:10'
-    ports:
-      - "8080:8080"
-    volumes:
-      - "/mnt/wars:/usr/local/tomcat/webapps"
+# Use official Tomcat image
+FROM tomcat:10
+
+# Remove default apps (optional but recommended)
+RUN rm -rf /usr/local/tomcat/webapps/*
+
+# Copy WAR file into Tomcat webapps
+COPY LoginWebApp.war /usr/local/tomcat/webapps/ROOT.war
+
+# Expose Tomcat port
+EXPOSE 8080
+
+# Start Tomcat
+CMD ["catalina.sh", "run"]
