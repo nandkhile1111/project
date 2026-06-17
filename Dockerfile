@@ -4,8 +4,9 @@ FROM tomcat:10
 RUN rm -rf /usr/local/tomcat/webapps/*
 
 # Copy WAR from Maven target
-COPY target/LoginWebApp.war /usr/local/tomcat/webapps/ROOT.war
+COPY target/LoginWebApp.war /usr/local/tomcat/webapps
 
-EXPOSE 8080
+EXPOSE 8081
 
 CMD ["catalina.sh", "run"]
+
